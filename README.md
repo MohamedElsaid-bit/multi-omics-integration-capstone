@@ -86,11 +86,11 @@ Even unsupervised PCA on mRNA alone, with no label information used to build the
 
 ## Future improvements
 
-- [ ] Run `tune.block.splsda` to formally select `keepX` per block/component instead of the fixed value of 15 used here
-- [ ] Try a design matrix with a stronger between-block correlation weight (for example 1 instead of 0.1) and compare CV performance
-- [ ] Add a fourth omics layer if one becomes available for the same samples (for example copy number or methylation), to test whether a 4-block model changes the integration-vs-single-block conclusion
-- [ ] Build the actual Power BI dashboard from the five exported tables (see "Power BI dashboard" above)
-- [ ] Revisit with a dataset where no single block is already a near-ceiling predictor, to see whether integration's advantage is clearer when the single-block baselines are more evenly matched
+- Run `tune.block.splsda` to formally select `keepX` per block/component instead of the fixed value of 15 used here
+- Try a design matrix with a stronger between-block correlation weight (for example 1 instead of 0.1) and compare CV performance
+- Add a fourth omics layer if one becomes available for the same samples (for example copy number or methylation), to test whether a 4-block model changes the integration-vs-single-block conclusion
+- Build the actual Power BI dashboard from the five exported tables (see "Power BI dashboard" above)
+- Revisit with a dataset where no single block is already a near-ceiling predictor, to see whether integration's advantage is clearer when the single-block baselines are more evenly matched
 
 ## Contact / links
 
