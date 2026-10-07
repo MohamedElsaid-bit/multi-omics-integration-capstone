@@ -6,7 +6,7 @@ A supervised multi-omics integration analysis on real, matched TCGA breast cance
 
 ## Technologies used
 
-R, mixOmics (DIABLO, sPLS-DA, PCA), ggplot2. Data exports prepared for a Power BI dashboard (not yet built; see "Power BI dashboard" below).
+R, mixOmics (DIABLO, sPLS-DA, PCA), ggplot2.
 
 ## Biological background
 
@@ -32,7 +32,6 @@ This is real TCGA (The Cancer Genome Atlas) breast cancer data, not simulated: t
 1. Load the three training blocks and confirm their sample IDs are identical across blocks (`01_explore_data.R`)
 2. Baseline: PCA on each block alone (visualization) and a PLS-DA classifier per block, cross-validated (5-fold, 10 repeats) on the training set and evaluated on the held-out test set where that block exists (`02_single_omics_baseline.R`)
 3. Fit a sparse DIABLO model (`block.splsda`, 2 components, `keepX = 15` per component per block, a fully connected design with correlation weight 0.1 between every pair of blocks), cross-validate the same way, and predict on the test set using whichever blocks are available per sample (`03_diablo_integration.R`)
-4. Export tidy tables for a Power BI dashboard (see below)
 
 ## How to run it
 
@@ -72,10 +71,6 @@ Even unsupervised PCA on mRNA alone, with no label information used to build the
 
 **The 45-feature sparse signature is biologically recognizable, not arbitrary.** The protein block's top selected features include ER-alpha, PR (progesterone receptor), GATA3, and AR (androgen receptor): all established, textbook breast cancer subtype markers, not features a model invented. The mRNA block's top features include CCNA2 and E2F1 (cell cycle regulators) and ASPM (a proliferation marker), consistent with Basal/proliferative subtypes being biologically distinct from Luminal A. Full ranked list in `results/tables/diablo_top_features_comp1.csv`.
 
-## Power BI dashboard
-
-**Not yet built.** Power BI Desktop is a GUI application, so building the dashboard itself is a manual step for Mohamed, not something run from this repo. What this project does provide is five clean, already-joined CSV exports (`results/tables/model_performance_summary.csv`, `pca_coordinates_by_block.csv`, `diablo_top_features_comp1.csv`, `diablo_test_confusion_matrix.csv`, `sample_metadata.csv`) plus `docs/power_bi_notes.md`, which maps each table to a recommended visual. Until the dashboard exists, this project should not be described as including one.
-
 ## Limitations
 
 - **Integration did not beat the single best block on this dataset**, as reported above; that is a property of this specific dataset (mRNA happens to be unusually strong alone here), not a general claim that multi-omics integration never helps
@@ -89,7 +84,6 @@ Even unsupervised PCA on mRNA alone, with no label information used to build the
 - Run `tune.block.splsda` to formally select `keepX` per block/component instead of the fixed value of 15 used here
 - Try a design matrix with a stronger between-block correlation weight (for example 1 instead of 0.1) and compare CV performance
 - Add a fourth omics layer if one becomes available for the same samples (for example copy number or methylation), to test whether a 4-block model changes the integration-vs-single-block conclusion
-- Build the actual Power BI dashboard from the five exported tables (see "Power BI dashboard" above)
 - Revisit with a dataset where no single block is already a near-ceiling predictor, to see whether integration's advantage is clearer when the single-block baselines are more evenly matched
 
 ## Contact / links

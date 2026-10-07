@@ -40,7 +40,7 @@ train_ids_match <- identical(rownames(breast.TCGA$data.train$mrna), rownames(bre
   identical(rownames(breast.TCGA$data.train$mrna), rownames(breast.TCGA$data.train$protein))
 cat(sprintf("\nTraining set: sample IDs identical across all 3 blocks: %s\n", train_ids_match))
 
-# Sample level metadata export (also used as a Power BI dimension table).
+# Sample level metadata export.
 metadata <- data.frame(
   sample_id = c(rownames(breast.TCGA$data.train$mrna), rownames(breast.TCGA$data.test$mrna)),
   subtype = c(as.character(breast.TCGA$data.train$subtype), as.character(breast.TCGA$data.test$subtype)),
