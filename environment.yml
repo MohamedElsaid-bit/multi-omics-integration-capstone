@@ -1,0 +1,9 @@
+name: multi-omics-integration-capstone
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bioconductor-mixomics=6.34.0
+  - r-ggplot2=3.5
+  - r-tidyverse=2.0
